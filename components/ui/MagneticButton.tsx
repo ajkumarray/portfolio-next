@@ -7,6 +7,8 @@ import clsx from "clsx";
 type Props = {
   children: ReactNode;
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: () => void;
   variant?: "gold" | "outline" | "ghost";
   className?: string;
@@ -16,6 +18,8 @@ type Props = {
 export default function MagneticButton({
   children,
   href,
+  target,
+  rel,
   onClick,
   variant = "gold",
   className,
@@ -66,6 +70,8 @@ export default function MagneticButton({
       <a
         ref={ref as React.RefObject<HTMLAnchorElement>}
         href={href}
+        target={target}
+        rel={target === "_blank" ? (rel ?? "noopener noreferrer") : rel}
         className={classes}
         onMouseMove={onMove}
         onMouseLeave={reset}

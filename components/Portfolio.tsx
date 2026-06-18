@@ -307,6 +307,8 @@ function PortfolioNav() {
           <ThemeToggle />
           <a
             href={PROFILE.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full bg-[var(--site-gold)] px-4 font-mono text-xs font-semibold uppercase text-[var(--site-gold-ink)] shadow-[0_14px_36px_-24px_rgba(0,0,0,0.7)] transition hover:-translate-y-0.5 hover:bg-[var(--site-gold-bright)] md:px-5"
           >
             <Download size={15} aria-hidden />
@@ -825,7 +827,7 @@ function ContactSection() {
               <Mail size={18} aria-hidden />
               Email me
             </MagneticButton>
-            <MagneticButton href={PROFILE.resumeUrl} variant="ghost" className="min-h-13 px-8 text-sm">
+            <MagneticButton href={PROFILE.resumeUrl} target="_blank" variant="ghost" className="min-h-13 px-8 text-sm">
               <Download size={18} aria-hidden />
               Download résumé
             </MagneticButton>

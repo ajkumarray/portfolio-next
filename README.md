@@ -59,10 +59,23 @@ All content lives in the config objects at the top of `components/Portfolio.tsx`
 
 ## Résumé
 
-The nav/contact buttons link to the same-origin path `/resume.pdf`. By default this serves the
-local fallback `public/resume.pdf`. Set `RESUME_SOURCE_URL` (see `.env.example`) to an
-S3/CloudFront/Vercel Blob URL and `next.config.ts` proxies `/resume.pdf` to it — so you can swap
-the résumé without a redeploy, and the URL stays same-origin.
+The nav/contact buttons link to the same-origin path `/resume.pdf`, served by a **force-dynamic
+route handler** ([app/resume.pdf/route.ts](app/resume.pdf/route.ts)) that fetches
+`RESUME_SOURCE_URL` (your S3/CloudFront PDF) with `cache: "no-store"` and streams it back.
+
+Because the fetch is dynamic and uncached, **re-uploading the PDF to S3 updates the live résumé
+with no redeploy** — unlike a build-time `rewrites()` proxy, which pins the env var at build time
+and lets a stale copy linger. There is intentionally **no `public/resume.pdf` fallback** (a static
+file at that path would shadow the route).
+
+Setup:
+
+1. Set `RESUME_SOURCE_URL` in `.env.local` (already done) for local dev, and in your host
+   (Vercel → Settings → Environment Variables, all environments) — then **redeploy**, or the
+   route returns `502`.
+2. On the S3 object set `Cache-Control: public, max-age=300, must-revalidate`, and keep a short
+   CloudFront TTL or invalidate the object path after each upload, so new versions propagate
+   within ~5 minutes.
 
 ## Performance & a11y
 
