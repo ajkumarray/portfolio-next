@@ -47,7 +47,7 @@ const PROFILE = {
   phone: "+91-6299294533",
   github: "https://github.com/ajkumarray",
   linkedin: "https://www.linkedin.com/in/ajkumarray",
-  resumeUrl: "/Ajit_Kumar_Resume.pdf",
+  resumeUrl: "/resume.pdf",
 };
 
 const HERO_BADGES = ["3.5+ YEARS", "JAVA · SPRING BOOT", "ANGULAR · REACT", "AWS · MICROSERVICES"];

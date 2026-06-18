@@ -57,7 +57,12 @@ All content lives in the config objects at the top of `components/Portfolio.tsx`
 - `SKILLS` — categorized skill chips.
 - `EDUCATION` — degree details.
 
-The résumé PDF served by the nav/contact buttons lives at `public/Ajit_Kumar_Resume.pdf`.
+## Résumé
+
+The nav/contact buttons link to the same-origin path `/resume.pdf`. By default this serves the
+local fallback `public/resume.pdf`. Set `RESUME_SOURCE_URL` (see `.env.example`) to an
+S3/CloudFront/Vercel Blob URL and `next.config.ts` proxies `/resume.pdf` to it — so you can swap
+the résumé without a redeploy, and the URL stays same-origin.
 
 ## Performance & a11y
 
