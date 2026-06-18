@@ -7,7 +7,7 @@ import {
   useTransform,
   useReducedMotion,
 } from "framer-motion";
-import { MouseEvent, ReactNode, useRef } from "react";
+import { MouseEvent, ReactNode, useEffect, useRef, useState } from "react";
 
 export default function Tilt({
   children,
@@ -36,6 +36,17 @@ export default function Tilt({
   );
   const prefersReduced = useReducedMotion();
 
+  // Safari mishandles the 3D tilt + cursor shine under a perspective transform,
+  // so skip both there and render the card flat. Detected after mount to keep
+  // the SSR and first client render identical (no hydration mismatch).
+  const [isSafari, setIsSafari] = useState(false);
+  useEffect(() => {
+    const ua = navigator.userAgent;
+    setIsSafari(
+      /safari/i.test(ua) && !/chrome|chromium|crios|android|edg|fxios|opr/i.test(ua),
+    );
+  }, []);
+
   const onMove = (e: MouseEvent) => {
     if (prefersReduced || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
@@ -46,6 +57,16 @@ export default function Tilt({
     mx.set(0.5);
     my.set(0.5);
   };
+
+  // Flat render for Safari — preserves the layout/height chain (className root
+  // → inner h-full → card) without any transform or shine.
+  if (isSafari) {
+    return (
+      <div className={className}>
+        <div className="h-full">{children}</div>
+      </div>
+    );
+  }
 
   return (
     <motion.div

@@ -571,7 +571,7 @@ function About() {
    ────────────────────────────────────────────────────────────── */
 
 function ExperienceSection() {
-  const [openId, setOpenId] = useState(EXPERIENCE[0].id);
+  const [openId, setOpenId] = useState("");
 
   return (
     <section id="experience" className="section-band">
