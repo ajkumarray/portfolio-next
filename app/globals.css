@@ -47,6 +47,7 @@
   --site-footer: #fff8ea;
   --site-hero-shade: rgba(245, 239, 227, 0.92);
   --site-hero-shade-soft: rgba(245, 239, 227, 0.58);
+  --site-contact-bg: #ece5d5;
   --ambient-base: #f5efe3;
   --ambient-teal: rgba(0, 124, 117, 0.14);
   --ambient-gold: rgba(143, 107, 31, 0.12);
@@ -75,6 +76,7 @@ html[data-theme="dark"] {
   --site-footer: #030612;
   --site-hero-shade: rgba(3, 6, 18, 0.88);
   --site-hero-shade-soft: rgba(3, 6, 18, 0.42);
+  --site-contact-bg: #030612;
   --ambient-base: #030612;
   --ambient-teal: rgba(30, 158, 142, 0.18);
   --ambient-gold: rgba(201, 168, 76, 0.12);

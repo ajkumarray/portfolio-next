@@ -805,19 +805,20 @@ function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#030612] py-20 text-[#f4eee3] md:py-28">
+    <section id="contact" className="relative overflow-hidden bg-[var(--site-contact-bg)] py-20 text-[var(--site-text)] md:py-28">
       <div className="absolute inset-0 ai-circuit-grid opacity-35" aria-hidden />
       <div
-        className="absolute left-[-10%] top-[-30%] h-[40vmax] w-[40vmax] rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.16),transparent_66%)] blur-3xl"
+        className="absolute left-[-10%] top-[-30%] h-[40vmax] w-[40vmax] rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, color-mix(in srgb, var(--site-gold) 16%, transparent), transparent 66%)" }}
         aria-hidden
       />
       <div className="relative mx-auto w-[min(92vw,1100px)] text-center">
         <Reveal>
-          <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#25c4b2]">Contact</p>
-          <h2 className="mx-auto mt-4 max-w-3xl font-serif text-4xl font-bold leading-tight text-[#e8c96a] md:text-6xl">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--site-teal)]">Contact</p>
+          <h2 className="mx-auto mt-4 max-w-3xl font-serif text-4xl font-bold leading-tight text-[var(--site-gold-bright)] md:text-6xl">
             Let&apos;s build something solid.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#a59d91]">
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[var(--site-muted)]">
             Open to full-stack and platform engineering roles. The fastest way to reach me is email — I usually reply
             within a day.
           </p>
@@ -840,13 +841,13 @@ function ContactSection() {
                 href={channel.href}
                 target={channel.href.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
-                className="flex flex-col items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] p-5 transition hover:-translate-y-1 hover:border-[#e8c96a]/40"
+                className="flex flex-col items-center gap-2 rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-5 transition hover:-translate-y-1 hover:border-[var(--site-gold-soft)]"
               >
-                <span className="text-[#e8c96a]">{channel.icon}</span>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a8478]">
+                <span className="text-[var(--site-gold)]">{channel.icon}</span>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--site-muted)]">
                   {channel.label}
                 </span>
-                <span className="break-all text-sm text-[#f4eee3]">{channel.value}</span>
+                <span className="break-all text-sm text-[var(--site-text)]">{channel.value}</span>
               </a>
             ))}
           </div>
