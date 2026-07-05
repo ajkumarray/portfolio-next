@@ -261,30 +261,6 @@ body {
   100% { transform: translateX(100%); }
 }
 
-/* glass card — hover brings gold border + lift */
-.glass-card {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius: 14px;
-  transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),
-              border-color 220ms ease,
-              box-shadow 220ms ease,
-              background 220ms ease;
-}
-.glass-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(201, 168, 76, 0.35);
-  box-shadow: 0 18px 50px -20px rgba(201, 168, 76, 0.18),
-              0 0 0 1px rgba(201, 168, 76, 0.08) inset;
-}
-
-.glass-card-teal:hover {
-  border-color: rgba(37, 196, 178, 0.35);
-  box-shadow: 0 18px 50px -20px rgba(37, 196, 178, 0.18),
-              0 0 0 1px rgba(37, 196, 178, 0.08) inset;
-}
 
 /* section padding rhythm */
 .section-pad {

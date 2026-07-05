@@ -38,6 +38,12 @@ export const metadata: Metadata = {
       "Full stack engineer specialising in platform engineering, microservices, dynamic workflows, and system design.",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ajit Kumar — Full Stack Software Engineer",
+    description:
+      "Full stack engineer specialising in platform engineering, microservices, dynamic workflows, and system design.",
+  },
   robots: { index: true, follow: true },
 };
 
@@ -48,8 +54,16 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="dark"
+      suppressHydrationWarning
       className={`${serif.variable} ${sans.variable} ${mono.variable} antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('ajit-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-screen relative">
         <Background />
         <ScrollProgress />

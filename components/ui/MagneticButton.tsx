@@ -48,11 +48,11 @@ export default function MagneticButton({
   const classes = clsx(
     "relative inline-flex items-center justify-center px-7 py-3 font-mono text-[11px] tracking-[0.22em] uppercase rounded-full overflow-hidden cursor-pointer transition-colors",
     variant === "gold" &&
-      "bg-gold text-navy-deep font-semibold hover:bg-gold-2",
+      "bg-[var(--site-gold)] text-[var(--site-gold-ink)] font-semibold hover:bg-[var(--site-gold-bright)]",
     variant === "outline" &&
-      "border border-gold text-gold hover:bg-[rgba(201,168,76,0.08)]",
+      "border border-[var(--site-gold)] text-[var(--site-gold)] hover:bg-[var(--site-pill)]",
     variant === "ghost" &&
-      "border border-[rgba(37,196,178,0.4)] text-teal-2 hover:bg-[rgba(37,196,178,0.08)]",
+      "border border-[color-mix(in_srgb,var(--site-teal)_40%,transparent)] text-[var(--site-teal)] hover:bg-[var(--site-teal-soft)]",
     className
   );
 

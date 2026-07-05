@@ -31,7 +31,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.25 }}
-              className="glass-card !border-[rgba(201,168,76,0.3)] px-4 py-3 text-sm font-mono tracking-[0.15em] text-gold shadow-[0_10px_40px_-10px_rgba(201,168,76,0.3)]"
+              className="px-4 py-3 text-sm font-mono tracking-[0.15em] rounded-2xl border backdrop-blur-[18px] shadow-[0_10px_40px_-10px_rgba(201,168,76,0.3)]"
+              style={{ background: "var(--site-card)", borderColor: "var(--site-gold-soft)", color: "var(--site-gold)" }}
             >
               {t.message}
             </motion.div>
