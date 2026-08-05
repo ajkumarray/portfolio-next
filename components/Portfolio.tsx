@@ -51,6 +51,7 @@ const PROFILE = {
   phone: "+91-6299294533",
   github: "https://github.com/ajkumarray",
   linkedin: "https://www.linkedin.com/in/ajkumarray",
+  leetcode: "https://leetcode.com/u/ajkumarray/",
   resumeUrl: "/resume.pdf",
 };
 
@@ -63,7 +64,7 @@ const STATS: { to: number; prefix?: string; suffix?: string; decimals?: number; 
   { to: 50, suffix: "k+", label: "Lines of code shipped to production" },
   { to: 2, label: "Products delivered end-to-end at Docquity" },
   { to: 10, suffix: "+", label: "Projects contributed to at Docquity" },
-  { to: 418, suffix: "+", label: "LeetCode problems solved" },
+  { to: 443, suffix: "+", label: "LeetCode problems solved" },
 ];
 
 type Experience = {
@@ -163,6 +164,13 @@ const PROJECTS: Project[] = [
     ],
   },
   {
+    title: "PR Reviewer — Local LLM Code Review CLI",
+    blurb:
+      "CLI that reviews a GitHub pull request entirely offline using a local LLM via Ollama. Fetches the PR's diff straight from Git, runs a two-stage review (free-form reasoning, then structured extraction) to surface findings by severity, and manages the local Ollama server lifecycle — no code ever leaves the machine.",
+    tags: ["Node.js", "TypeScript", "CLI", "Ollama", "GitHub", "Commander.js"],
+    links: [{ label: "GitHub", href: "https://github.com/ajkumarray/reviewer" }],
+  },
+  {
     title: "LeetCode → GitHub Sync",
     blurb:
       "Chrome extension (Manifest V3) that detects accepted LeetCode submissions and automatically archives them to GitHub — creating problem folders with description READMEs, saving solutions in the correct language, and versioning multiple attempts. Supports 20+ languages with local-only token storage via Chrome sync storage.",
@@ -234,6 +242,14 @@ function LinkedinGlyph({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
       <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0Z" />
+    </svg>
+  );
+}
+
+function LeetcodeGlyph({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
     </svg>
   );
 }
@@ -489,6 +505,9 @@ function Hero() {
               <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-xs uppercase transition hover:text-[var(--site-gold)]">
                 <LinkedinGlyph size={16} /> LinkedIn
               </a>
+              <a href={PROFILE.leetcode} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-xs uppercase transition hover:text-[var(--site-gold)]">
+                <LeetcodeGlyph size={16} /> LeetCode
+              </a>
               <span className="inline-flex items-center gap-2 font-mono text-xs uppercase">
                 <MapPin size={15} aria-hidden /> {PROFILE.location}
               </span>
@@ -691,6 +710,9 @@ function ExperienceSection() {
    ────────────────────────────────────────────────────────────── */
 
 function ProjectsSection() {
+  const totalCards = PROJECTS.length + 1; // +1 for the "More on GitHub" card below
+  const lastCardFullWidth = totalCards % 2 !== 0;
+
   return (
     <section id="projects" className="section-wide">
       <SectionHeading
@@ -740,7 +762,7 @@ function ProjectsSection() {
           </RevealItem>
         ))}
 
-        <RevealItem className="md:col-span-2">
+        <RevealItem className={lastCardFullWidth ? "md:col-span-2" : undefined}>
           <Tilt intensity={5} className="relative h-full rounded-lg">
             <a
               href={PROFILE.github}
@@ -823,8 +845,9 @@ function ContactSection() {
     { icon: <Mail size={20} aria-hidden />, label: "Email", value: PROFILE.email, href: `mailto:${PROFILE.email}`, copy: true },
     { icon: <Phone size={20} aria-hidden />, label: "Phone", value: PROFILE.phone, href: `tel:${PROFILE.phone}`, copy: true },
     { icon: <WhatsappGlyph size={20} />, label: "WhatsApp", value: PROFILE.phone, href: "https://wa.me/916299294533" },
-    { icon: <LinkedinGlyph size={20} />, label: "LinkedIn", value: "ajkumarray", href: PROFILE.linkedin },
     { icon: <GithubGlyph size={20} />, label: "GitHub", value: "ajkumarray", href: PROFILE.github },
+    { icon: <LeetcodeGlyph size={20} />, label: "LeetCode", value: "ajkumarray", href: PROFILE.leetcode },
+    { icon: <LinkedinGlyph size={20} />, label: "LinkedIn", value: "ajkumarray", href: PROFILE.linkedin },
   ];
 
   return (
@@ -835,7 +858,7 @@ function ContactSection() {
         style={{ background: "radial-gradient(circle, color-mix(in srgb, var(--site-gold) 16%, transparent), transparent 66%)" }}
         aria-hidden
       />
-      <div className="relative mx-auto w-[min(92vw,1100px)] text-center">
+      <div className="relative mx-auto w-[min(92vw,1400px)] text-center">
         <Reveal>
           <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--site-teal)]">Contact</p>
           <h2 className="mx-auto mt-4 max-w-3xl font-serif text-4xl font-bold leading-tight text-[var(--site-gold-bright)] md:text-6xl">
@@ -857,7 +880,7 @@ function ContactSection() {
             </MagneticButton>
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+          <div className="mx-auto mt-12 grid max-w-[85rem] grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
             {channels.map((channel, i) => (
               <a
                 key={channel.label}
@@ -871,7 +894,8 @@ function ContactSection() {
                 } : undefined}
                 className={clsx(
                   "flex flex-col items-center gap-2 rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-5 transition hover:-translate-y-1 hover:border-[var(--site-gold-soft)] cursor-pointer",
-                  i === 0 && "col-span-2 md:col-span-1"
+                  i === 0 && "col-span-2 md:col-span-1",
+                  i === channels.length - 1 && (channels.length - 1) % 2 !== 0 && "col-span-2 md:col-span-1"
                 )}
               >
                 <span className="text-[var(--site-gold)]">{channel.icon}</span>
@@ -906,6 +930,9 @@ function PortfolioFooter() {
           </a>
           <a href={PROFILE.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-[var(--site-gold)]">
             <GithubGlyph size={15} /> GitHub
+          </a>
+          <a href={PROFILE.leetcode} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-[var(--site-gold)]">
+            <LeetcodeGlyph size={15} /> LeetCode
           </a>
         </div>
       </div>
