@@ -64,26 +64,29 @@ const STATS: { to: number; prefix?: string; suffix?: string; decimals?: number; 
   { to: 50, suffix: "k+", label: "Lines of code shipped to production" },
   { to: 2, label: "Products delivered end-to-end at Docquity" },
   { to: 10, suffix: "+", label: "Projects contributed to at Docquity" },
-  { to: 443, suffix: "+", label: "LeetCode problems solved" },
+  { to: 475, suffix: "+", label: "LeetCode problems solved" },
 ];
 
 type Experience = {
   id: string;
-  company: string;
-  period: string;
-  role: string;
   title: string;
   tags: string[];
   accent: string;
   points: string[];
 };
 
+const DOCQUITY = {
+  name: "Docquity",
+  location: "Gurugram, India",
+  period: "JAN 2023 — May 2026",
+  role: "Software Development Engineer",
+  tenure: `${YEARS_EXP}+ yrs`,
+  summary: "Multi-tenant healthcare platforms, owned end-to-end.",
+};
+
 const EXPERIENCE: Experience[] = [
   {
     id: "pap",
-    company: "Docquity · Gurugram",
-    period: "JAN 2023 — PRESENT",
-    role: "SDE",
     title: "Patient Assistance Program (PAP)",
     accent: "#8f6b1f",
     tags: ["Angular 20", "NgRx", "RxJS", "Reactive Forms", "RBAC"],
@@ -97,9 +100,6 @@ const EXPERIENCE: Experience[] = [
   },
   {
     id: "onboarding",
-    company: "Docquity · Gurugram",
-    period: "JAN 2023 — PRESENT",
-    role: "SDE",
     title: "Onboarding & Authentication Platform",
     accent: "#007c75",
     tags: ["TypeScript", "npm package", "PostgreSQL", "OTP / SSO", "Webpack"],
@@ -113,9 +113,6 @@ const EXPERIENCE: Experience[] = [
   },
   {
     id: "survey",
-    company: "Docquity · Gurugram",
-    period: "JAN 2023 — PRESENT",
-    role: "SDE",
     title: "Survey, CME Quiz & Poll Engine",
     accent: "#8c4fb3",
     tags: ["Java", "Spring Boot", "PostgreSQL", "MongoDB", "Redis"],
@@ -129,9 +126,6 @@ const EXPERIENCE: Experience[] = [
   },
   {
     id: "hcp",
-    company: "Docquity · Gurugram",
-    period: "JAN 2023 — PRESENT",
-    role: "SDE",
     title: "HCP Groups & Content Targeting",
     accent: "#b84f2c",
     tags: ["Neo4j", "Microservices", "Angular", "Graph queries"],
@@ -155,8 +149,8 @@ const PROJECTS: Project[] = [
   {
     title: "Nirdeshak — URL Shortener",
     blurb:
-      "Production-ready full-stack URL shortening platform with authenticated & anonymous link creation, expiration-based lifecycle, JWT auth, role-aware management, and click analytics. Fully automated CI/CD from dev to production.",
-    tags: ["React", "TypeScript", "Spring Boot", "PostgreSQL", "Docker", "GitHub Actions", "AWS EC2"],
+      "Full-stack URL shortener with anonymous and authenticated link creation, JWT auth, expiry-based lifecycle with soft deletes, collision-checked short codes, and per-link click analytics on a paginated dashboard. The Spring Boot (Java 21) backend runs serverless on AWS Lambda with SnapStart behind CloudFront, backed by Neon Postgres with ~650ms warm restores at $0/month. React + Vite frontend with AES-encrypted cookie sessions, deployed as a static site.",
+    tags: ["React", "TypeScript", "Vite", "Spring Boot", "Java 21", "AWS Lambda", "CloudFront", "Neon Postgres"],
     links: [
       { label: "Live Demo", href: "https://url.ajkumarray.com/" },
       { label: "Backend", href: "https://github.com/ajkumarray/margdarshak" },
@@ -179,6 +173,16 @@ const PROJECTS: Project[] = [
       { label: "GitHub", href: "https://github.com/ajkumarray/leetcode-github-sync" },
     ],
   },
+  {
+    title: "Prit Radio — Always-On Playlist Radio",
+    blurb:
+      "An always-on radio for a 250-track Spotify playlist that plays each song through a hidden YouTube player — three controls: play, pause, next. A dependency-free sync script resolves Spotify tracks to YouTube videos into a committed JSON file, so the running app holds no credentials and never calls either API at runtime. Nightly GitHub Actions sync, PWA-installable with an offline shell, and always-on shuffle where every song plays once before any repeats.",
+    tags: ["Next.js", "React", "Tailwind CSS", "YouTube IFrame API", "GitHub Actions", "PWA", "Render"],
+    links: [
+      { label: "Live Demo", href: "https://prit-radio.onrender.com" },
+      { label: "GitHub", href: "https://github.com/ajkumarray/prit" },
+    ],
+  },
 ];
 
 const SKILLS: { icon: LucideIcon; label: string; items: string[] }[] = [
@@ -186,25 +190,25 @@ const SKILLS: { icon: LucideIcon; label: string; items: string[] }[] = [
   {
     icon: Server,
     label: "Backend",
-    items: ["Spring Boot", "Spring Security", "JPA/Hibernate", "REST APIs", "JWT", "Node.js", "Express.js", "NestJS", "gRPC"],
+    items: ["Spring Boot 3", "Spring Security", "Spring Data JPA", "Spring Cloud AWS", "REST APIs", "JWT", "Node.js", "gRPC"],
   },
   {
     icon: Layers,
     label: "Frontend",
-    items: ["Angular", "NgRx", "RxJS", "React", "Next.js", "PrimeNG", "Bootstrap", "Tailwind CSS", "HTML5", "SCSS"],
+    items: ["Angular", "NgRx", "RxJS", "React", "PrimeNG", "shadcn/ui", "Bootstrap", "Tailwind CSS", "HTML5", "SCSS"],
   },
-  { icon: Database, label: "Databases & Caching", items: ["PostgreSQL", "MongoDB", "Redis", "Neo4j", "MySQL"] },
+  { icon: Database, label: "Databases & Caching", items: ["PostgreSQL", "Neon", "MongoDB", "Redis", "Neo4j", "MySQL"] },
   {
     icon: Boxes,
     label: "Architecture & Concepts",
-    items: ["Microservices", "System Design", "RBAC", "OAuth/SSO", "Config-Driven Systems", "Distributed Systems", "DSA"],
+    items: ["Microservices", "Serverless", "System Design", "RBAC", "OAuth/SSO", "Config-Driven Systems", "Distributed Systems", "DSA"],
   },
   {
     icon: Cloud,
     label: "Cloud & DevOps",
-    items: ["AWS (EC2, S3, Secrets Manager)", "Docker", "Kubernetes", "GitHub Actions", "Jenkins", "Git", "CI/CD"],
+    items: ["AWS (Lambda, CloudFront, EC2, S3)", "SnapStart", "Docker", "Kubernetes", "GitHub Actions", "Jenkins", "Render", "Git", "CI/CD"],
   },
-  { icon: Wrench, label: "Tools & Build", items: ["Maven", "npm", "Webpack", "Swagger/OpenAPI"] },
+  { icon: Wrench, label: "Tools & Build", items: ["Maven", "npm", "Vite", "Webpack", "Swagger/OpenAPI"] },
 ];
 
 const EDUCATION = {
@@ -616,11 +620,31 @@ function ExperienceSection() {
   return (
     <section id="experience" className="section-band">
       <div className="mx-auto w-[min(92vw,1560px)]">
-        <SectionHeading
-          eyebrow="Experience"
-          title="What I've shipped at Docquity."
-          copy="Three and a half years owning multi-tenant healthcare platforms end-to-end. Tap a project to expand the detail."
-        />
+        <Reveal className="mb-9 md:mb-12">
+          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--site-teal)]">
+            Experience
+          </p>
+          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+            <h2 className="font-serif text-4xl font-bold leading-tight text-[var(--site-text)] md:text-6xl">
+              {DOCQUITY.name}
+            </h2>
+            <span className="font-mono text-sm font-semibold uppercase tracking-[0.12em] text-[var(--site-gold)]">
+              {DOCQUITY.role}
+            </span>
+          </div>
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm text-[var(--site-muted)]">
+            <span>{DOCQUITY.period}</span>
+            <span aria-hidden className="opacity-40">·</span>
+            <span>{DOCQUITY.tenure}</span>
+            <span aria-hidden className="opacity-40">·</span>
+            <span className="inline-flex items-center gap-1">
+              <MapPin size={14} aria-hidden /> {DOCQUITY.location}
+            </span>
+          </div>
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-[var(--site-muted)] md:text-xl">
+            {DOCQUITY.summary} Tap a project to expand the detail.
+          </p>
+        </Reveal>
         <RevealStagger className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           {EXPERIENCE.map((exp) => {
             const isOpen = openId === exp.id;
@@ -638,21 +662,10 @@ function ExperienceSection() {
                       className="w-full p-6 text-left md:p-8"
                       aria-expanded={isOpen}
                     >
-                      <div className="mb-6 flex items-center justify-between gap-4">
-                        <span className="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--accent)]">
-                          {exp.period}
-                        </span>
-                        <span className="rounded-full border px-3 py-1 font-mono text-xs font-semibold uppercase text-[color:var(--accent)] [border-color:color-mix(in_srgb,var(--accent)_45%,transparent)]">
-                          {exp.role}
-                        </span>
-                      </div>
                       <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <h3 className="font-serif text-3xl font-bold leading-tight text-[var(--site-text)] md:text-4xl">
-                            {exp.title}
-                          </h3>
-                          <p className="mt-2 font-mono text-sm text-[var(--site-muted)]">{exp.company}</p>
-                        </div>
+                        <h3 className="font-serif text-3xl font-bold leading-tight text-[var(--site-text)] md:text-4xl">
+                          {exp.title}
+                        </h3>
                         <motion.span
                           animate={{ rotate: isOpen ? 180 : 0 }}
                           transition={{ duration: 0.25 }}
