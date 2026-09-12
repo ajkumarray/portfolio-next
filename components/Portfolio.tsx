@@ -25,7 +25,9 @@ import {
   Wrench,
   type LucideIcon,
 } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import ajitAvatar from "@/app/assets/ajit_avatar.png";
 import SmoothScroll from "./SmoothScroll";
 import AnimatedCounter from "./ui/AnimatedCounter";
 import MagneticButton from "./ui/MagneticButton";
@@ -328,7 +330,9 @@ function PortfolioNav() {
     >
       <div className="mx-auto flex h-full w-[min(92vw,1560px)] items-center justify-between gap-4">
         <a href="#hero" className="flex min-w-0 shrink-0 items-center gap-2 text-[var(--site-gold)]">
-          <Monogram size={30} />
+          <span className="relative inline-flex h-[30px] w-[30px] shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--site-gold)]">
+            <Image src={ajitAvatar} alt="Ajit Kumar" fill sizes="30px" className="object-cover" />
+          </span>
           <span className="font-serif text-xl font-semibold">Ajit Kumar</span>
         </a>
 
@@ -446,7 +450,7 @@ function CodeCard() {
           {"\n"}  name: <span className="text-[#4caf7d]">&quot;Ajit Kumar&quot;</span>,
           {"\n"}  role: <span className="text-[#4caf7d]">&quot;Full Stack Engineer&quot;</span>,
           {"\n"}  stack: [<span className="text-[#4caf7d]">&quot;Java&quot;</span>, <span className="text-[#4caf7d]">&quot;Spring&quot;</span>, <span className="text-[#4caf7d]">&quot;Angular&quot;</span>],
-          {"\n"}  focus: <span className="text-[#4caf7d]">&quot;platform engineering&quot;</span>,
+          {"\n"}  focus: <span className="text-[#4caf7d]">&quot;full stack development&quot;</span>,
           {"\n"}  shipping: <span className="text-[#e8c96a]">true</span>,
           {"\n"}{"}"};
         </pre>
